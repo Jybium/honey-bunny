@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
-import "./styles/globals.css";
-import Footer from "@/components/app-reusables/Footer";
-
+import type { Metadata } from 'next'
+import { Space_Grotesk } from 'next/font/google'
+import './globals.css'
+import Footer from '../components/app-reusables/Footer';
 
 const font = Space_Grotesk({ subsets: ["latin"], weight: "400" });
 
@@ -13,13 +12,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body className={font.className}>{children}</body>
-      <Footer />
+     
     </html>
-  );
+  )
 }

@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        desktop: "url('./public/assests/splash-desktop.svg)",
+        mobile: "url('./public/assests/splash-mobile.svg)",
+      },
       colors: {
         base: "#6AB5D2",
         base2: "#E688A3",
@@ -31,7 +35,7 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: "#6AB5D2",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
