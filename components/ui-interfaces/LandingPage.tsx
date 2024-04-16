@@ -32,19 +32,20 @@ const Landingpage = () => {
 
   return (
     <main className="h-screen w-full">
-      <section className="flex justify-center content-center w-full h-4/5 bg-background">
-        <section className="flex justify-between items-center content-center h-4/5 m-auto w-[90%]">
+      <section className="flex justify-center content-center w-full h-[75%] bg-background">
+        <section className="flex justify-between items-center content-center h-[75%] m-auto w-[90%]">
           <div>
             <Image
               src={Logo}
               alt="logo"
               width={400}
               height={400}
+              priority
               className="block max-w-full"
             />
           </div>
           <section className="w-3/5">
-            <div>
+            <div className="text-white">
               <h1 className="font-medium text-6xl">
                 {landingPage[text].heading}
               </h1>
@@ -54,16 +55,16 @@ const Landingpage = () => {
               <Button
                 asChild
                 className={`${
-                  text === 1 ? "bg-base2" : "bg-transparent"
-                } rounded-full px-6 py-6 border border-white`}
+                  text === 1 ? "bg-base2 text-white" : "bg-white text-text border border-white"
+                } rounded-full px-6 py-6 `}
               >
                 <Link href="/sign-up">Sign Up</Link>
               </Button>
               <Button
                 asChild
-                className="rounded-full px-6 py-6 border border-white"
+                className="rounded-full px-6 py-6 border border-white text-white"
               >
-                <Link href="/sign-up">Log in</Link>
+                <Link href="/sign-up" className="text-white">Log in</Link>
               </Button>
             </div>
           </section>

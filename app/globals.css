@@ -5,7 +5,7 @@
   @layer base {
     :root {
       --background: #6AB5D2;
-      --foreground: 222.2 84% 4.9%;
+      --foreground: #ffff;
 
       --card: 0 0% 100%;
       --card-foreground: 222.2 84% 4.9%;
@@ -70,7 +70,19 @@
     * {
       @apply border-border;
     }
-    /* body {
-      @apply bg-background text-foreground;
-    } */
+    body {
+      @apply bg-white text-foreground;
+    }
   }
+
+
+.image-container {
+
+  max-width: 100vw;
+
+  max-height: 100vh;
+
+  object-fit: contain;
+}
+
+
