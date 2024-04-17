@@ -1,124 +1,137 @@
-"use client"
+"use client";
 
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import Modal from '@/components/app-reusables/Modal'
-import React, {useState} from 'react'
-import Link from 'next/link';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import Modal from "@/components/app-reusables/Modal";
+import React, { useState } from "react";
+import Link from "next/link";
 
-
-import Icon from '@/components/app-reusables/Icons';
-import Logo from "../../../public/assests/logo.svg"
-import Model from "../../../public/assests/model.png"
-import Explorer from "../../../public/assests/explorer.png"
-import Image from 'next/image';
-import { Checkbox, Password, Text } from '@/components/app-reusables/InputField';
-
-
-const FormSchema = z.object({
-  username: z
-    .string() // Base type as string
-    .min(4, { message: "The username must be 4 characters or more" })
-    .max(10, { message: "The username must be 10 characters or less" })
-    .regex(
-      /^[a-zA-Z0-9_]+$/,
-      "The username must contain only letters, numbers and underscore (_)"
-    ),
-  email: z.string().email({
-    message: "Invalid email. Please enter a valid email address",
-  }),
-  gender: z.string(), 
-  accountType: z.string(),
-  password: z.string(),
-  confirmPassword: z.string()
-});
+import Icon from "@/components/app-reusables/Icons";
+import Logo from "../../../public/assests/logo.svg";
+import Model from "../../../public/assests/model.png";
+import Explorer from "../../../public/assests/explorer.png";
+import Image from "next/image";
+import {
+  Checkbox,
+  Password,
+  Text,
+} from "@/components/app-reusables/InputField";
+import { ChevronLeft, X } from "lucide-react";
 
 
 
-type FormInput = z.infer<typeof FormSchema>;
+
+const FormSchema = z
+  .object({
+    username: z
+      .string() // Base type as string
+      .min(4, { message: "The username must be 4 characters or more" })
+      .max(10, { message: "The username must be 10 characters or less" })
+      .regex(
+        /^[a-zA-Z0-9_]+$/,
+        "The username must contain only letters, numbers and underscore (_)"
+      ),
+    email: z.string().email({
+      message: "Invalid email. Please enter a valid email address",
+    }),
+    gender: z.string(),
+    accountType: z.string(),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters long" }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
+
+export type FormInput = z.infer<typeof FormSchema>;
 
 const page = () => {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    setValue,
+    formState: { errors },
+  } = useForm<FormInput>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      gender: "male",
+    },
+  });
 
-    const {
-        register,
-        handleSubmit,
-        getValues,
-        setValue,
-        formState: { errors },
-    } = useForm<FormInput>({
-        resolver: zodResolver(FormSchema),
-        defaultValues: {
-            username: '',
-            email: '',
-            gender: "male",
-        },
-    });
-
-    const formValues = getValues()
+  const formValues = getValues();
 
   const [showModal, setShowModal] = useState(false);
   const [page, setPage] = useState(0);
 
-const formTiles = ["Account Type", "Details", "Confirmation Code"];
-     const handleModalClose = (changeGenderToMale = false) => {
-       if (changeGenderToMale) {
-         setValue("gender" , "male");
-       }
-       setShowModal(false);
-     };
-  
-    const handleModelClick = () => {
-      setShowModal(true);
-    };
+  const formTiles = ["Account Type", "Details", "Confirmation Code"];
 
-const handleGenderChangeToFemale = () => {
-  setValue("gender", "female");
-  setShowModal(false);
-};
+  const handleModalClose = (changeGenderToMale = false) => {
+    if (changeGenderToMale) {
+      setValue("gender", "male");
+    }
+    setShowModal(false);
+  };
 
+  const handleModelClick = () => {
+    setShowModal(true);
+  };
 
+  const handleGenderChangeToFemale = () => {
+    setValue("gender", "female");
+    setShowModal(false);
+  };
 
-const clearErrors = () => {
-  const filteredErrorKeys = Object.keys(errors).filter(
-    (fieldName) => fieldName !== "root"
-  ); // Filter by string type
+  const handleExplorerClick = () => {
+    setValue("gender", "male");
+  };
 
-  filteredErrorKeys.forEach((fieldName) => {
-    setValue(fieldName, "");
-  });
-};
+  const clearErrors = () => {
+    const filteredErrorKeys = Object.keys(errors).filter(
+      (fieldName) => fieldName !== "root"
+    ) as Array<keyof FormInput>; // Explicitly specify the type of fieldName
 
-
-const handleNext = () => {
-  handleSubmit(() => {
-    setPage((prevPage) => {
-      const nextPage = prevPage + 1;
-      if (nextPage < formTiles.length) {
-        // Clear errors when moving to the next page
-        clearErrors();
-      }
-      return nextPage;
+    filteredErrorKeys.forEach((fieldName) => {
+      setValue(fieldName, "");
     });
-  })();
-};
+  };
 
+  const handleNext = () => {
+    handleSubmit(() => {
+      setPage((prevPage) => {
+        const nextPage = prevPage + 1;
+        if (nextPage < formTiles.length) {
+          // Clear errors when moving to the next page
+          clearErrors();
+        }
+        return nextPage;
+      });
+    })();
+  };
 
- const isNextDisabled1 =
-   (formValues.accountType === "model" && formValues.gender === "male") ||
-   formValues.accountType === "";
+  const isNextDisabled1 =
+    (formValues.accountType === "model" && formValues.gender === "male") ||
+    formValues.accountType === "";
 
- const isNextDisabled2 =
-   formValues.email === "" ||
-   formValues.password === "" ||
-   formValues.confirmPassword === "";
+  const isNextDisabled2 =
+    formValues.email === "" ||
+    formValues.password === "" ||
+    formValues.confirmPassword === "";
 
-  const submit = (data : FormInput ) =>{
-    console.log(data)
-  }
+  const submit = (data: FormInput) => {
+    console.log(data);
+  };
 
-    const button1Style = {
+  const button1Style = {
     bgColor: "bg-[#4EB246]",
     textColor: "text-white",
     hoverBgColor: "hover:bg-[#459937]",
@@ -133,37 +146,42 @@ const handleNext = () => {
   return (
     <div>
       <div className="w-full xl:w-[565px] mx-auto h-full">
-        <div className="bg-white md:rounded-[32px] rounded-[24px]  px-[4%] py-[25px] md:p-[32px] shadow-xl ">
-          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[25px] items-center">
+        <div className="bg-white md:rounded-[32px] rounded-[24px] px-[4%] py-[10px] md:p-[10px] my-5 shadow-xl ">
+          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[10px] items-center">
             <div className="flex justify-start">
               {page !== 0 ? (
                 <button
                   onClick={() => setPage(page - 1)}
                   className="bg-[#F7F6F3] hover:bg-gray-200 rounded-[9px] w-[48px] h-[48px] flex justify-center items-center"
                 >
-                  <Icon className=" w-[9.5px]" name="arrow-left" />
+                  <ChevronLeft
+                    className=" w-[9.5px]"
+                    name="chevron-left"
+                    color="black"
+                    size={30}
+                  />
                 </button>
               ) : (
                 <></>
               )}
             </div>
             <div className="flex justify-center">
-              <Image className="w-[63px] md:w-[90px]" src={Logo} alt="logo" />
+              <Image className="w-[63px] md:w-[80px]" src={Logo} alt="logo" />
             </div>
             <div className="flex justify-end">
               <Link href="/">
                 <button className="bg-[#F7F6F3] hover:bg-gray-200 rounded-[9px] w-[48px] h-[48px] flex justify-center items-center">
-                  <Icon className="h-[16px] w-[16px]" name="cross" />
+                  <X className="h-[16px] w-[16px]" color="black" size={30} />
                 </button>
               </Link>
             </div>
           </div>
           {page === 0 && (
             <div>
-              <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] mt-[40px] text-[#44464A] md:leading-[30px] text-center ">
+              <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] mt-[10px] text-[#44464A] md:leading-[30px] text-center ">
                 Are you model or explorer?
               </h4>
-              <div className="mt-[40px] md:mt-[40px]   grid grid-cols-2 gap-[16px] md:gap-[32px] xl:mx-[15px]">
+              <div className="mt-[20px] md:mt-[20px] grid grid-cols-2 gap-[16px] md:gap-[32px] xl:mx-[15px]">
                 <div
                   onClick={handleModelClick}
                   className="radio-container h-full w-full"
@@ -171,24 +189,21 @@ const handleNext = () => {
                   <input
                     type="radio"
                     id="model"
-                    name="accountType"
                     value="model"
                     className="hidden-input hidden"
-                    onChange={(e) =>
-                      handleChange(e.target.value, "accountType")
-                    }
-                    checked={formData.accountType === "model"}
+                    {...register("accountType", { required: true })}
+                    checked={formValues.accountType === "model"}
                   />
                   <label
                     htmlFor="model"
                     className="custom-radio md:h-[279px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
                   >
                     <div className="h-full ">
-                      <div className="py-[28px] flex flex-col items-center justify-between h-full">
+                      <div className="py-[15px] flex flex-col items-center justify-between h-full">
                         <div>
                           <img
-                            className="md:w-[160px] w-[80px] md:h-[160px] h-[80px] rounded-full "
-                            src={model}
+                            className="md:w-[140px] w-[80px] md:h-[140px] h-[80px] rounded-full object-cover"
+                            src={Model.src}
                           />
                         </div>
                         <h4 className="custom-text  text-black text-[16px] font-[500] md:text-[24px] ">
@@ -206,24 +221,21 @@ const handleNext = () => {
                   <input
                     type="radio"
                     id="explorer"
-                    name="accountType"
                     value="explorer"
                     className="hidden-input hidden"
-                    onChange={(e) =>
-                      handleChange(e.target.value, "accountType")
-                    }
-                    checked={formData.accountType === "explorer"}
+                    {...register("accountType", { required: true })}
+                    checked={formValues.accountType === "explorer"}
                   />
                   <label
                     htmlFor="explorer"
                     className="custom-radio md:h-[279px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
                   >
                     <div className="h-full ">
-                      <div className="py-[28px] flex flex-col items-center justify-between h-full">
+                      <div className="py-[15px] flex flex-col items-center justify-between h-full">
                         <div>
                           <img
-                            className="md:w-[160px] w-[80px] md:h-[160px] h-[80px] rounded-full "
-                            src={explorer}
+                            className="md:w-[140px] w-[80px] md:h-[140px] h-[80px] rounded-full object-cover"
+                            src={Explorer.src}
                           />
                         </div>
                         <h4 className="custom-text  text-black text-[16px] font-[500] md:text-[24px] ">
@@ -239,7 +251,7 @@ const handleNext = () => {
                   {page !== formTiles.length - 1 && (
                     <button
                       onClick={handleNext}
-                      className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[40px] md:mt-[80px] text-black text-[16px] md:text-[18px] font-[400] ${
+                      className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[20px] md:mt-[20px] text-black text-[16px] md:text-[18px] font-[400] ${
                         isNextDisabled1
                           ? "bg-[#ECECEC] cursor-not-allowed text-[#9E9E9E]"
                           : "bg-tertiary hover:bg-tertiaryHover"
@@ -251,9 +263,9 @@ const handleNext = () => {
                   )}
                 </div>
               )}
-              <div className="mt-[20px]  md:mb-[20px] flex justify-center gap-[12px]">
-                <div className="w-[10px] h-[10px] border-[1px] border-primary rounded-full bg-white"></div>
-                <div className="w-[10px] h-[10px] border-[1px] border-primary rounded-full bg-white"></div>
+              <div className="mt-[20px]  md:mb-[10px] flex justify-center gap-[12px]">
+                <div className="w-[10px] h-[10px] border-[1px] border-primary rounded-full bg-white border-base"></div>
+                <div className="w-[10px] h-[10px] border-[1px] border-primary rounded-full bg-white border-base"></div>
               </div>
             </div>
           )}
@@ -273,6 +285,7 @@ const handleNext = () => {
                     name="email"
                     placeholder="Enter your email"
                     type="email"
+                    title="Email address"
                     register={register}
                     error={errors}
                   />
@@ -285,16 +298,16 @@ const handleNext = () => {
                   <Password
                     register={register}
                     error={errors}
+                    placeholder="Enter your password"
                     name="password"
                     title="Password"
                   />
                 </div>
                 <div className="mt-[16px] md:mt-[20px]">
-                  
-
                   <Password
                     register={register}
                     error={errors}
+                    placeholder="Confirm your password"
                     name="password"
                     title="Confirm Password"
                   />
@@ -382,6 +395,6 @@ const handleNext = () => {
       </div>
     </div>
   );
-}
+};
 
-export default page
+export default page;

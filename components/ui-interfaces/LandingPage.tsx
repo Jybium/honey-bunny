@@ -61,8 +61,8 @@ const Landingpage = () => {
 
   return (
     <main className="h-screen w-full">
-      <section className="flex justify-center content-center w-full h-[80%] bg-background">
-        <section className="md:flex grid justify-between items-center h-[76%] m-auto w-[90%]">
+      <section className="flex justify-center content-center w-full h-[82%] bg-background">
+        <section className="md:flex grid justify-between items-center h-[80%] m-auto w-[90%]">
           <div>
             <Image
               src={Logo}

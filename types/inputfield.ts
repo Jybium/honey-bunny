@@ -1,10 +1,23 @@
-type inputFieldDataType = {
-  placeholder: string;
+import { UseFormRegister } from "react-hook-form";
+
+type FormValues = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  username: string;
+  accountType: string;
+  gender: string,
+};
+
+export type inputFieldDataType = {
+  placeholder?: string;
   title: string;
-  required: boolean;
+  required?: boolean;
   name: string;
-  classname: string;
-  type: string;
-  children: React.ReactNode;
-  onclick: () => void
+  register: UseFormRegister<FormValues>;
+  classname?: string;
+  error: any;
+  type?: string;
+  children?: React.ReactNode;
+  onclick?: () => void;
 };
