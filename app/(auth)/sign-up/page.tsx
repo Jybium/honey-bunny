@@ -50,7 +50,7 @@ const FormSchema = z
 
 export type FormInput = z.infer<typeof FormSchema>;
 
-const page = () => {
+const Page = () => {
   const {
     register,
     handleSubmit,
@@ -65,6 +65,7 @@ const page = () => {
       password: "",
       confirmPassword: "",
       gender: "male",
+      accountType:""
     },
   });
 
@@ -198,12 +199,13 @@ const page = () => {
                     htmlFor="model"
                     className="custom-radio md:h-[279px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
                   >
-                    <div className="h-full ">
+                    <div className="h-full border border-text">
                       <div className="py-[15px] flex flex-col items-center justify-between h-full">
                         <div>
-                          <img
+                          <Image
                             className="md:w-[140px] w-[80px] md:h-[140px] h-[80px] rounded-full object-cover"
                             src={Model.src}
+                            alt="model image"
                           />
                         </div>
                         <h4 className="custom-text  text-black text-[16px] font-[500] md:text-[24px] ">
@@ -233,9 +235,10 @@ const page = () => {
                     <div className="h-full ">
                       <div className="py-[15px] flex flex-col items-center justify-between h-full">
                         <div>
-                          <img
+                          <Image
                             className="md:w-[140px] w-[80px] md:h-[140px] h-[80px] rounded-full object-cover"
-                            src={Explorer.src}
+                            src={Explorer}
+                            alt="explorer image"
                           />
                         </div>
                         <h4 className="custom-text  text-black text-[16px] font-[500] md:text-[24px] ">
@@ -397,4 +400,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

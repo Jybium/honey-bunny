@@ -3,20 +3,21 @@ import React from "react";
 import logo from "../../../public/assests/logo.svg"
 import Link from "next/link";
 import { X } from "lucide-react";
+import Image from "next/image";
 
-const Login = () => {
+const Page = () => {
   return (
-    <div className="bg-primary  overflow-y-auto lg:flex items-center justify-center">
-      <div className=" lg:grid grid-cols-2 flex items-center px-[4%] md:px-[20%] lg:px-[4%]  2xl:px-[6%]  py-[50px] ">
+    <div className="bg-primary overflow-y-auto lg:flex items-center justify-center">
+      <div className=" lg:grid grid-cols-2 flex items-center px-[4%] md:px-[20%] lg:px-[4%]  2xl:px-[6%]  py-[30px] ">
         <div className=" lg:block hidden">
-          <img className="w-[70%]" src={logo.src} />
+          <Image className="w-[70%]" src={logo} alt="logo"/>
         </div>
         <div className="w-full xl:w-[565px] mx-auto">
           <div className="bg-white md:rounded-t-[32px] rounded-t-[24px]  p-[4%] md:p-[32px] shadow-xl">
             <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[25px] items-center">
               <div></div>
               <div className="flex justify-center">
-                <img className="w-[63px] md:w-[90px]" src={logo} />
+                <Image className="w-[63px] md:w-[90px]" src={logo} alt="logo"/>
               </div>
               <div className="flex justify-end">
                 <Link href="/">
@@ -82,4 +83,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Page;
