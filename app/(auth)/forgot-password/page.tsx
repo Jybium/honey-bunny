@@ -6,11 +6,43 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { useForm } from "react-hook-form";
 
 import Logo from "../../../public/assests/logo.svg";
+import { Text } from "@/components/app-reusables/InputField";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+
+const FormSchema = z
+  .object({
+ 
+    email: z.string().email({
+      message: "Invalid email. Please enter a valid email address",
+    }),
+  });
+
+export type FormInput = z.infer<typeof FormSchema>;
+
+type EmailFormValues = {
+  email: string;
+};
 
 const Page = () => {
   const navigate = useRouter();
+    const {
+      register,
+      handleSubmit,
+      getValues,
+      setValue,
+      formState: { errors },
+    } = useForm<FormInput>({
+      resolver: zodResolver(FormSchema),
+      defaultValues: {
+        email: "",
+      },
+      reValidateMode: "onBlur",
+    });
 
   const handleGoBack = () => {
     navigate.back();
@@ -57,19 +89,20 @@ const Page = () => {
           </h4>
           <form className="mt-[40px] md:mt-[50px]   ">
             <div>
-              <h4 className="text-[#535353]  font-[500] text-[12px] mb-[8px] ">
+              <label className="text-[#535353]  font-[500] text-[12px] mb-[8px] ">
                 Email address
-              </h4>
+              </label>
 
               <input
-                className="w-full border-[1px] border-[#BFBEB9] rounded-[8px] px-[12px] py-[12px] md:px-[20px] md:py-[12px] outline-primary placeholder:text-[#C1C1C1] placeholder:text-[14px] placeholder:font-[400] text-[14px] text-text"
+                className="w-full border-[1px] border-[#BFBEB9] rounded-[8px] px-[12px] py-[12px] md:px-[20px] md:py-[12px] outline-primary placeholder:text-[#C1C1C1] placeholder:text-[14px] placeholder:font-[400] text-[14px]"
                 placeholder="Enter"
                 type="email"
+                {...register("email", {required: true})}
               />
             </div>
           </form>
           <div className="mt-auto">
-            <button className="bg-tertiary w-full px-[20px] py-[12px] rounded-[32px] mt-[60px] md:mt-[50px] text-black text-[16px] md:text-[18px] font-[400] hover:bg-tertiaryHover">
+            <button className="bg-tertiary w-full px-[20px] py-[12px] rounded-[32px] mt-[70px] md:mt-[50px] text-black text-[16px] md:text-[18px] font-[400] hover:bg-tertiaryHover">
               Send
             </button>
           </div>

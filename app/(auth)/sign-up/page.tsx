@@ -7,13 +7,11 @@ import Modal from "@/components/app-reusables/Modal";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-import Icon from "@/components/app-reusables/Icons";
 import Logo from "../../../public/assests/logo.svg";
 import Model from "../../../public/assests/model.png";
 import Explorer from "../../../public/assests/explorer.png";
 import Image from "next/image";
 import {
-  Checkbox,
   Password,
   Text,
 } from "@/components/app-reusables/InputField";
