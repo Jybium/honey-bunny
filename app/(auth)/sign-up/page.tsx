@@ -68,8 +68,16 @@ const Page = () => {
     reValidateMode: "onBlur",
   });
 
-  const formValues = getValues();
-
+  
+   const [gender, setGender] = useState("");
+   const [formValues, setFormValues] = useState({
+     username: "",
+     email: "",
+     password: "",
+     confirmPassword: "",
+     gender: "male",
+     accountType: "",
+   });
   const [showModal, setShowModal] = useState(false);
   const [page, setPage] = useState(0);
 
@@ -78,6 +86,8 @@ const Page = () => {
   const handleModalClose = (changeGenderToMale = false) => {
     if (changeGenderToMale) {
       setValue("gender", "male");
+    setGender("male");
+
     }
     setShowModal(false);
   };
@@ -88,6 +98,7 @@ const Page = () => {
 
   const handleGenderChangeToFemale = () => {
     setValue("gender", "female");
+    setGender("female")
     setValue("accountType", "model");
 
     setShowModal(false);
@@ -95,13 +106,15 @@ const Page = () => {
 
   const handleExplorerClick = () => {
     setValue("gender", "male");
+    setGender("male");
     setValue("accountType", "explorer");
   };
 
   useEffect(() => {
-    console.log("Gender changed:", formValues.gender);
-    getValues();
-  }, [formValues.gender]);
+    // Call your getValues function here and update formValues state
+    const newFormValues = getValues();
+    setFormValues(newFormValues);
+  }, [gender]); 
 
   const clearErrors = () => {
     const filteredErrorKeys = Object.keys(errors).filter(
@@ -405,7 +418,7 @@ const Page = () => {
                     )}
                   </div>
                 )}
-                <div className="mt-[10px] md:hidden md:mb-[6px] flex justify-center gap-[12px]">
+                <div className="mt-[10px] md:mb-[6px] flex justify-center gap-[12px]">
                   <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-primary"></div>
                   <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-white"></div>
                 </div>
