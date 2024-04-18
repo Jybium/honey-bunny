@@ -7,9 +7,9 @@ import Footer from '../../components/app-reusables/Footer';
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="h-screen w-full">
-      <section className="flex justify-center content-center w-full h-[82%] bg-background">
-        <section className="flex justify-between items-center content-center m-auto w-[90%]">
+    <main className="md:h-screen w-full">
+      <section className="md:flex justify-center content-center w-full md:h-[82%] bg-background">
+        <section className="md:flex justify-between items-center content-center m-auto w-[90%]">
           <div>
             <Image
               src={Logo}
@@ -17,13 +17,13 @@ const layout = ({ children }: { children: React.ReactNode }) => {
               width={400}
               height={400}
               priority
-              className="block max-w-full"
+              className="md:block hidden max-w-full"
             />
           </div>
-          <section className="w-[57%] h-[80%]">{children}</section>
+          <section className="md:w-[57%] md:h-[80%]">{children}</section>
         </section>
       </section>
-      <div className='h-1/6'>
+      <div className='md:h-1/6'>
 
       <Footer />
       </div>

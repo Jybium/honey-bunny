@@ -10,12 +10,12 @@ const Footer = () => {
       <div className="px-[4%]  py-[20px] md:py-[20px]">
         <div className=" pb-[8px] border-b-[1px] border-[#D9D9D9] md:w-[674px] mx-auto">
           <div className="flex justify-between md:w-[582px] mx-auto items-center">
-            <Link href="/about">
+            <Link href="/about-us">
               <button className="text-[11px] md:text-[14px] text-text font-[400]">
                 About
               </button>
             </Link>
-            <Link href="/terms">
+            <Link href="/terms-of-use">
               <button className="text-[11px] md:text-[14px] text-text font-[400]">
                 Terms of service
               </button>

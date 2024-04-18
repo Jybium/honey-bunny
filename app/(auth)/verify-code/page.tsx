@@ -68,7 +68,7 @@ const Page = () => {
 
   return (
    
-      <div className=" xl:grid grid-cols-2 flex items-center px-[4%] md:px-[20%] lg:px-[4%] 2xl:px-[6%] py-[30px] h-full ">
+      <div className=" xl:grid grid-cols-2 flex items-center px-[4%] md:px-[20%] lg:px-[4%] 2xl:px-[6%] md:py-[30px] py-[50px] h-full ">
         <div className="w-full md:w-[565px] mx-auto h-full">
           <div className="bg-white md:rounded-[32px] rounded-[24px]  p-[4%] md:p-[22px] shadow-xl h-full flex flex-col">
             <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[20px] items-center">
@@ -101,16 +101,16 @@ const Page = () => {
                 </Link>
               </div>
             </div>
-            <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] mt-[20px] text-[#44464A] md:leading-[30px] text-center ">
+            <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] md:mt-[20px] mt-[30px] text-[#44464A] md:leading-[30px] text-center ">
               Enter confirmation code
             </h4>
-            <h4 className="text-[14px] md:text-[16px] font-[400] text-[#44464A] mt-[10px] text-center ">
+            <h4 className="text-[14px] md:text-[16px] font-[400] text-[#44464A] md:mt-[10px] mt-[12px] text-center ">
               Enter code sent to Honeybunnybun@gmail.com{" "}
               <span className="cursor-pointer text-base2 font-[700]">
                 Resend
               </span>
             </h4>
-            <form className="mt-[20px] md:mt-[30px] ">
+            <form className="mt-[40px] md:mt-[30px] ">
               <div className="flex justify-center max-w-[258px] h-[56px] mx-auto md:h-[64px]">
                 <div className="items-center space-x-[10px] border-[1px] border-[#BFBEB9] w-full flex justify-center rounded-[32px]">
                   {inputs.map((value, index) => (
@@ -134,7 +134,7 @@ const Page = () => {
             </form>
             <div className="mt-auto">
               <button
-                className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[20px] md:mt-[60px] text-black text-[16px] md:text-[18px] font-[400] ${
+                className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[60px] md:mt-[60px] text-black text-[16px] md:text-[18px] font-[400] ${
                   isSubmitDisabled
                     ? "bg-[#ECECEC] cursor-not-allowed text-[#9E9E9E]"
                     : "bg-tertiary hover:bg-tertiaryHover"

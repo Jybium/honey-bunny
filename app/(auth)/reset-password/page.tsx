@@ -21,7 +21,7 @@ const Page= () => {
 
   return (
 
-      <div className=" xl:grid grid-cols-2 flex items-center px-[4%] md:px-[20%] lg:px-[4%]  2xl:px-[6%]  py-[50px] h-full xl:h-[847px]">
+      <div className=" xl:grid grid-cols-2 flex items-center px-[4%] md:px-[20%] lg:px-[4%]  2xl:px-[6%]  py-[50px] h-full">
         <div className=" lg:block hidden"></div>
         <div className="w-full md:w-[565px] mx-auto h-full">
           <div className="bg-white md:rounded-[32px] rounded-[24px]  p-[4%] md:p-[32px] shadow-xl h-full flex flex-col">

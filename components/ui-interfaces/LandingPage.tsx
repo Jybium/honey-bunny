@@ -61,8 +61,8 @@ const Landingpage = () => {
 
   return (
     <main className="h-screen w-full">
-      <section className="flex justify-center content-center w-full h-[82%] bg-background">
-        <section className="md:flex grid justify-between items-center h-[80%] m-auto w-[90%]">
+      <section className="md:flex justify-center content-center w-full md:h-[82%] bg-background">
+        <section className="md:flex grid justify-between items-center md:h-[80%] m-auto w-[90%]">
           <div>
             <Image
               src={Logo}
@@ -70,17 +70,17 @@ const Landingpage = () => {
               width={400}
               height={400}
               priority
-              className="block max-w-full"
+              className="block w-[65%] md:w-[400px] mx-auto md:mx-0 md:max-w-full"
             />
           </div>
-          <section className="w-[57%]">
+          <section className="md:w-[57%] w-full">
             <div className="text-white">
-              <h1 className="font-medium text-[64px]">
+              <h1 className="text-[32px] font-[500] leading-[40px] text-white md:text-[64px] md:leading-[81px]">
                 {landingPage[text].heading}
               </h1>
               <p className="text-lg mt-4 mb-16">{landingPage[text].text}</p>
             </div>
-            <div className="flex gap-6">
+            <div className="flex gap-6 pb-7 md:pb-0">
               <Button
                 asChild
                 className={`${
@@ -108,9 +108,8 @@ const Landingpage = () => {
           </section>
         </section>
       </section>
-      <div className="h-1/6">
-
-      <Footer />
+      <div className="md:h-1/6 h-fit">
+        <Footer />
       </div>
       <div
         className={`top-0 left-1/2 transform -translate-x-1/2  absolute overflow-y-hidden z-40  w-full h-full  ${

@@ -1,11 +1,10 @@
 "use client";
 
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Modal from "@/components/app-reusables/Modal";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import Icon from "@/components/app-reusables/Icons";
@@ -20,9 +19,6 @@ import {
 } from "@/components/app-reusables/InputField";
 import { ChevronLeft, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-
-
 
 const FormSchema = z
   .object({
@@ -52,7 +48,7 @@ const FormSchema = z
 export type FormInput = z.infer<typeof FormSchema>;
 
 const Page = () => {
-  const router = useRouter()
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -67,8 +63,9 @@ const Page = () => {
       password: "",
       confirmPassword: "",
       gender: "male",
-      accountType:""
+      accountType: "",
     },
+    reValidateMode: "onBlur",
   });
 
   const formValues = getValues();
@@ -91,14 +88,20 @@ const Page = () => {
 
   const handleGenderChangeToFemale = () => {
     setValue("gender", "female");
+    setValue("accountType", "model");
+
     setShowModal(false);
-    setPage((prev)=>prev + 1)
   };
 
   const handleExplorerClick = () => {
     setValue("gender", "male");
-    setPage((prev) => prev + 1);
+    setValue("accountType", "explorer");
   };
+
+  useEffect(() => {
+    console.log("Gender changed:", formValues.gender);
+    getValues();
+  }, [formValues.gender]);
 
   const clearErrors = () => {
     const filteredErrorKeys = Object.keys(errors).filter(
@@ -111,19 +114,20 @@ const Page = () => {
   };
 
   const handleNext = () => {
-    if (page === 1){
-      router.push('/verify-code')
+    if (page === 1) {
+      router.push("/verify-code");
     }
-  
-    formValues.gender && formValues.accountType &&
-    setPage((prevPage) => {
-      const nextPage = prevPage + 1;
-      if (nextPage < formTiles.length) {
-        // Clear errors when moving to the next page
-        clearErrors();
-      }
-      return nextPage;
-    });
+
+    formValues.gender &&
+      formValues.accountType &&
+      setPage((prevPage) => {
+        const nextPage = prevPage + 1;
+        if (nextPage < formTiles.length) {
+          // Clear errors when moving to the next page
+          clearErrors();
+        }
+        return nextPage;
+      });
   };
 
   const isNextDisabled1 =
@@ -154,8 +158,8 @@ const Page = () => {
   return (
     <div>
       <div className="w-full xl:w-[565px] mx-auto h-full">
-        <div className="bg-white md:rounded-[32px] rounded-[24px] px-[4%] py-[10px] md:p-[10px] my-5 shadow-xl ">
-          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[10px] md:pb-[8px] items-center">
+        <div className="bg-white md:rounded-[32px] rounded-[24px] px-[4%] py-[10px] md:p-[10px] my-3 shadow-xl ">
+          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[10px] md:pb-[7px] items-center">
             <div className="flex justify-start">
               {page !== 0 ? (
                 <button
@@ -173,11 +177,17 @@ const Page = () => {
               )}
             </div>
             <div className="flex justify-center">
-              <Image className="w-[63px] md:w-[80px]" width={63} height={80} src={Logo} alt="logo" />
+              <Image
+                className="w-[63px] md:w-[80px]"
+                width={63}
+                height={63}
+                src={Logo}
+                alt="logo"
+              />
             </div>
             <div className="flex justify-end">
               <Link href="/">
-                <button className="bg-[#F7F6F3] hover:bg-gray-200 rounded-[9px] w-[48px] h-[48px] flex justify-center items-center">
+                <button className="bg-[#F7F6F3] hover:bg-gray-200 rounded-[9px] w-[45px] h-[45px] flex justify-center items-center">
                   <X className="h-[16px] w-[16px]" color="black" size={30} />
                 </button>
               </Link>
@@ -185,10 +195,10 @@ const Page = () => {
           </div>
           {page === 0 && (
             <div>
-              <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] mt-[10px] text-[#44464A] md:leading-[30px] text-center ">
+              <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] md:mt-[10px] mt-[30px] text-[#44464A] md:leading-[30px] text-center ">
                 Are you model or explorer?
               </h4>
-              <div className="mt-[20px] md:mt-[20px] grid grid-cols-2 gap-[16px] md:gap-[32px] xl:mx-[15px]">
+              <div className="mt-[30px] md:mt-[20px] grid grid-cols-2 gap-[16px] md:gap-[32px] xl:mx-[15px]">
                 <div
                   onClick={handleModelClick}
                   className="radio-container h-full w-full"
@@ -203,13 +213,19 @@ const Page = () => {
                   />
                   <label
                     htmlFor="model"
-                    className="custom-radio md:h-[279px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
+                    className="custom-radio md:h-[235px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
                   >
-                    <div className="h-full border border-text rounded-[20px] md:rounded-[28px]">
+                    <div
+                      className={`h-full border ${
+                        formValues.accountType === "model"
+                          ? "border-[0px]"
+                          : "border-text"
+                      } rounded-[20px] md:rounded-[28px]`}
+                    >
                       <div className="py-[15px] flex flex-col items-center justify-between h-full">
-                        <div>
+                        <div className="">
                           <Image
-                            className="md:w-[140px] w-[80px] md:h-[140px] h-[80px] rounded-full object-cover"
+                            className="md:w-[140px] w-[110px] md:h-[140px] h-[110px] rounded-full object-cover"
                             src={Model.src}
                             alt="model image"
                             height={140}
@@ -238,13 +254,19 @@ const Page = () => {
                   />
                   <label
                     htmlFor="explorer"
-                    className="custom-radio md:h-[279px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
+                    className="custom-radio md:h-[235px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
                   >
-                    <div className="h-full border border-text rounded-[20px] md:rounded-[28px]">
+                    <div
+                      className={`h-full border ${
+                        formValues.accountType === "explorer"
+                          ? "border-[0px]"
+                          : "border-text"
+                      } rounded-[20px] md:rounded-[28px]`}
+                    >
                       <div className="py-[15px] flex flex-col items-center justify-between h-full">
                         <div>
                           <Image
-                            className="md:w-[140px] w-[80px] md:h-[140px] h-[80px] rounded-full object-cover"
+                            className="md:w-[140px] w-[110px] md:h-[140px] h-[110px] rounded-full object-cover"
                             src={Explorer}
                             alt="explorer image"
                             height={140}
@@ -264,7 +286,7 @@ const Page = () => {
                   {page !== formTiles.length - 1 && (
                     <button
                       onClick={handleNext}
-                      className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[20px] md:mt-[20px] text-black text-[16px] md:text-[18px] font-[400] ${
+                      className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[50px] md:mt-[20px] text-black text-[16px] md:text-[18px] font-[400] ${
                         isNextDisabled1
                           ? "bg-[#ECECEC] cursor-not-allowed text-[#9E9E9E]"
                           : "bg-tertiary hover:bg-tertiaryHover"
@@ -276,7 +298,7 @@ const Page = () => {
                   )}
                 </div>
               )}
-              <div className="mt-[20px]  md:mb-[10px] flex justify-center gap-[12px]">
+              <div className="mt-[20px] mb-2 md:mt-[10px]  md:mb-[8px] flex justify-center gap-[12px]">
                 <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-white "></div>
                 <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-white "></div>
               </div>
@@ -327,11 +349,17 @@ const Page = () => {
                       className="relative flex items-center rounded-full cursor-pointer"
                       htmlFor="checkbox"
                     >
-                      <Checkbox
+                      {/* <Checkbox
                         name="checkbox"
                         title="This field"
                         register={register}
                         error={errors}
+                      /> */}
+                      <input
+                        type="checkbox"
+                        name="checkbox"
+                        id="checkbox"
+                        className="before:content[''] peer relative h-[16px] w-[16px] cursor-pointer appearance-none rounded-[3px] border-[1px] border-[#BFBEB9] transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-primary2 checked:bg-primary2 checked:before:bg-primary2 hover:before:opacity-10"
                       />
                       <span className="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                         <svg
@@ -354,8 +382,8 @@ const Page = () => {
                   <div>
                     <h4 className="font-[400] text-[11px] text-[#A5A5A5] leading-[16px]">
                       By signing up, you consent to adhere to our{" "}
-                      <span className="text-base2 ">Terms of Service</span>{" "}
-                      and <span className="text-base2">Privacy Policy</span>
+                      <span className="text-base2 ">Terms of Service</span> and{" "}
+                      <span className="text-base2">Privacy Policy</span>
                     </h4>
                   </div>
                 </div>
@@ -377,10 +405,10 @@ const Page = () => {
                     )}
                   </div>
                 )}
-                {/* <div className="mt-[10px]  md:mb-[6px] flex justify-center gap-[12px]">
+                <div className="mt-[10px] md:hidden md:mb-[6px] flex justify-center gap-[12px]">
                   <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-primary"></div>
                   <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-white"></div>
-                </div> */}
+                </div>
               </form>
             </div>
           )}
