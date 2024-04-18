@@ -45,7 +45,7 @@ export const Password = ({
         htmlFor={For}
         className="text-[#535353] font-[500] text-[12px] mb-[8px] "
       >
-        {name}
+        {For}
       </Label>
 
       <div className="relative w-full">
@@ -62,16 +62,14 @@ export const Password = ({
           })}
           name={name}
           type={show ? "text" : "password"}
-          className="w-full border-[1px] border-[#BFBEB9] rounded-[8px] px-[12px] py-[12px] md:px-[20px] md:py-[12px] outline-primary placeholder:text-[#C1C1C1] placeholder:text-[14px] placeholder:font-[400] text-[14px] relative"
+          className="w-full border-[1px] border-[#BFBEB9] rounded-[8px] px-[12px] py-[12px] md:px-[20px] md:py-[12px] outline-primary placeholder:text-[#C1C1C1] placeholder:text-[14px] placeholder:font-[400] text-[14px] relative bg-white"
         />
 
         <span onClick={showPassword} className="absolute right-2 bottom-3">
           {show ? <GrHide size="20" /> : <GrView size="20" />}
         </span>
       </div>
-      <p className="text-gray-400 font-bold text-sm mt-1 text-right">
-        Minimum of 8 characters.
-      </p>
+     
       {(error[name] as { type: string }) && error[name].type === "required" && (
         <p className="text-sm text-red-600 font-bold text-left">
           Password is required
@@ -168,12 +166,12 @@ export const Text = ({
   classname,
 }: inputFieldDataType & { register: UseFormRegister<FormInput> }) => {
   return (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
+    <div className="grid w-full max-w-full items-center">
       <Label
         htmlFor={name}
-        className="text-[#535353] font-[500] text-[12px] mb-[8px] "
+        className="text-[#535353] font-[500] text-[12px] mb-[4px] "
       >
-        {name}
+        {title}
       </Label>
       <Input
         id={name}
@@ -181,7 +179,7 @@ export const Text = ({
         {...register(name as keyof FormValues, { required: true })}
         name={name}
         type={type || "text"}
-        className="w-full border-[1px] border-[#BFBEB9] rounded-[8px] px-[12px] py-[12px] md:px-[20px] md:py-[12px] outline-primary placeholder:text-[#C1C1C1] placeholder:text-[14px] placeholder:font-[400] text-[14px]"
+        className="w-full border-[1px] border-[#BFBEB9] rounded-[8px] px-[12px] py-[12px] md:px-[20px] md:py-[12px] outline-primary placeholder:text-[#C1C1C1] placeholder:text-[14px] placeholder:font-[400] text-[14px] bg-white"
       />
       {error[name] && error[name].type === "required" && (
         <p className="text-sm text-red-600 font-bold text-left">{`${title} is required.`}</p>

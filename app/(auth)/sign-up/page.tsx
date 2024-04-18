@@ -19,6 +19,7 @@ import {
   Text,
 } from "@/components/app-reusables/InputField";
 import { ChevronLeft, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 
 
@@ -51,6 +52,7 @@ const FormSchema = z
 export type FormInput = z.infer<typeof FormSchema>;
 
 const Page = () => {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -90,10 +92,12 @@ const Page = () => {
   const handleGenderChangeToFemale = () => {
     setValue("gender", "female");
     setShowModal(false);
+    setPage((prev)=>prev + 1)
   };
 
   const handleExplorerClick = () => {
     setValue("gender", "male");
+    setPage((prev) => prev + 1);
   };
 
   const clearErrors = () => {
@@ -107,16 +111,19 @@ const Page = () => {
   };
 
   const handleNext = () => {
-    handleSubmit(() => {
-      setPage((prevPage) => {
-        const nextPage = prevPage + 1;
-        if (nextPage < formTiles.length) {
-          // Clear errors when moving to the next page
-          clearErrors();
-        }
-        return nextPage;
-      });
-    })();
+    if (page === 1){
+      router.push('/verify-code')
+    }
+  
+    formValues.gender && formValues.accountType &&
+    setPage((prevPage) => {
+      const nextPage = prevPage + 1;
+      if (nextPage < formTiles.length) {
+        // Clear errors when moving to the next page
+        clearErrors();
+      }
+      return nextPage;
+    });
   };
 
   const isNextDisabled1 =
@@ -148,7 +155,7 @@ const Page = () => {
     <div>
       <div className="w-full xl:w-[565px] mx-auto h-full">
         <div className="bg-white md:rounded-[32px] rounded-[24px] px-[4%] py-[10px] md:p-[10px] my-5 shadow-xl ">
-          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[10px] items-center">
+          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[10px] md:pb-[8px] items-center">
             <div className="flex justify-start">
               {page !== 0 ? (
                 <button
@@ -156,10 +163,9 @@ const Page = () => {
                   className="bg-[#F7F6F3] hover:bg-gray-200 rounded-[9px] w-[48px] h-[48px] flex justify-center items-center"
                 >
                   <ChevronLeft
-                    className=" w-[9.5px]"
-                    name="chevron-left"
+                    // className=" w-[9.5px]"
                     color="black"
-                    size={30}
+                    size={20}
                   />
                 </button>
               ) : (
@@ -167,7 +173,7 @@ const Page = () => {
               )}
             </div>
             <div className="flex justify-center">
-              <Image className="w-[63px] md:w-[80px]" src={Logo} alt="logo" />
+              <Image className="w-[63px] md:w-[80px]" width={63} height={80} src={Logo} alt="logo" />
             </div>
             <div className="flex justify-end">
               <Link href="/">
@@ -199,13 +205,15 @@ const Page = () => {
                     htmlFor="model"
                     className="custom-radio md:h-[279px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
                   >
-                    <div className="h-full border border-text">
+                    <div className="h-full border border-text rounded-[20px] md:rounded-[28px]">
                       <div className="py-[15px] flex flex-col items-center justify-between h-full">
                         <div>
                           <Image
                             className="md:w-[140px] w-[80px] md:h-[140px] h-[80px] rounded-full object-cover"
                             src={Model.src}
                             alt="model image"
+                            height={140}
+                            width={140}
                           />
                         </div>
                         <h4 className="custom-text  text-black text-[16px] font-[500] md:text-[24px] ">
@@ -232,13 +240,15 @@ const Page = () => {
                     htmlFor="explorer"
                     className="custom-radio md:h-[279px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
                   >
-                    <div className="h-full ">
+                    <div className="h-full border border-text rounded-[20px] md:rounded-[28px]">
                       <div className="py-[15px] flex flex-col items-center justify-between h-full">
                         <div>
                           <Image
                             className="md:w-[140px] w-[80px] md:h-[140px] h-[80px] rounded-full object-cover"
                             src={Explorer}
                             alt="explorer image"
+                            height={140}
+                            width={140}
                           />
                         </div>
                         <h4 className="custom-text  text-black text-[16px] font-[500] md:text-[24px] ">
@@ -267,37 +277,33 @@ const Page = () => {
                 </div>
               )}
               <div className="mt-[20px]  md:mb-[10px] flex justify-center gap-[12px]">
-                <div className="w-[10px] h-[10px] border-[1px] border-primary rounded-full bg-white border-base"></div>
-                <div className="w-[10px] h-[10px] border-[1px] border-primary rounded-full bg-white border-base"></div>
+                <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-white "></div>
+                <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-white "></div>
               </div>
             </div>
           )}
 
           {page === 1 && (
-            <div>
-              <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] mt-[20px] md:mt-[40px] text-[#44464A] md:leading-[30px] text-center ">
+            <div className="bg-white">
+              <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] mt-[20px] md:mt-[10px] text-[#44464A] md:leading-[30px] text-center ">
                 Sign up
               </h4>
 
               <form
-                className="mt-[20px] md:mt-[40px]"
+                className="mt-[20px] md:mt-[10px]"
                 onSubmit={handleSubmit(submit)}
               >
-                <div>
+                <div className="w-full">
                   <Text
                     name="email"
                     placeholder="Enter your email"
                     type="email"
-                    title="Email address"
+                    title="Email Address"
                     register={register}
                     error={errors}
                   />
                 </div>
-                <div className="mt-[16px] md:mt-[20px]">
-                  <h4 className="text-[#535353]  font-[500] text-[12px] mb-[8px] ">
-                    Password
-                  </h4>
-
+                <div className="mt-[16px] md:mt-[10px]">
                   <Password
                     register={register}
                     error={errors}
@@ -306,13 +312,13 @@ const Page = () => {
                     title="Password"
                   />
                 </div>
-                <div className="mt-[16px] md:mt-[20px]">
+                <div className="mt-[16px] md:mt-[10px]">
                   <Password
                     register={register}
                     error={errors}
                     placeholder="Confirm your password"
-                    name="password"
-                    title="Confirm Password"
+                    name="confirmPassword"
+                    title="Confirm New Password"
                   />
                 </div>
                 <div className="flex items-center mt-[16px]">
@@ -348,8 +354,8 @@ const Page = () => {
                   <div>
                     <h4 className="font-[400] text-[11px] text-[#A5A5A5] leading-[16px]">
                       By signing up, you consent to adhere to our{" "}
-                      <span className="text-primary2 ">Terms of Service</span>{" "}
-                      and <span className="text-primary2">Privacy Policy</span>
+                      <span className="text-base2 ">Terms of Service</span>{" "}
+                      and <span className="text-base2">Privacy Policy</span>
                     </h4>
                   </div>
                 </div>
@@ -359,7 +365,7 @@ const Page = () => {
                     {page !== formTiles.length - 1 && (
                       <button
                         onClick={handleNext}
-                        className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[20px] xl:mt-[80px] text-black text-[16px] md:text-[18px] font-[400] ${
+                        className={`w-full px-[20px] py-[10px] rounded-[32px] mt-[10px] xl:mt-[20px] text-black text-[16px] md:text-[18px] font-[400] ${
                           isNextDisabled2
                             ? "bg-[#ECECEC] cursor-not-allowed text-[#9E9E9E]"
                             : "bg-tertiary hover:bg-tertiaryHover"
@@ -371,10 +377,10 @@ const Page = () => {
                     )}
                   </div>
                 )}
-                <div className="mt-[20px]  md:mb-[20px] flex justify-center gap-[12px]">
-                  <div className="w-[10px] h-[10px] border-[1px] border-primary rounded-full bg-primary"></div>
-                  <div className="w-[10px] h-[10px] border-[1px] border-primary rounded-full bg-white"></div>
-                </div>
+                {/* <div className="mt-[10px]  md:mb-[6px] flex justify-center gap-[12px]">
+                  <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-primary"></div>
+                  <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-white"></div>
+                </div> */}
               </form>
             </div>
           )}

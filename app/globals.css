@@ -77,11 +77,8 @@
 
 
 .image-container {
-
   max-width: 100vw;
-
   max-height: 100vh;
-
   object-fit: cover;
 }
 
@@ -92,3 +89,28 @@
 }
 
 
+input[type="number"] {
+    /* Hide the default increment/decrement arrows */
+    -webkit-appearance: none;
+    -moz-appearance: textfield; /* Firefox-specific */
+
+    /* Hide the scroll bar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer/Edge */
+}
+
+/* Optional: Add your own custom styling for the input field */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    display: none; /* Hide the increment/decrement arrows for Chrome/Safari */
+}
+
+
+input{
+  color: black;
+}
+
+input:active, input:focus, input:focus-within{
+  border: 1px solid #6AB5D2;
+  outline: 1px solid #6AB5D2;
+}
