@@ -17,6 +17,7 @@ import { FormInput } from "../../app/(auth)/sign-up/page";
 
 type FormValues = {
   email: string;
+  name: string;
   password: string;
   confirmPassword: string;
   username: string;
@@ -52,14 +53,23 @@ export const Password = ({
         <Input
           id={For}
           placeholder={placeholder}
-          {...register(name as keyof FormValues, {
-            required: true,
-            validate: {
-              checkLength: (value: any) => value.length >= 8,
-              matchPattern: (value: any) =>
-                /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$*])/.test(value),
-            },
-          })}
+          {...register(
+            name as
+              | "password"
+              | "confirmPassword"
+              | "email"
+              | "username"
+              | "gender"
+              | "accountType",
+            {
+              required: true,
+              validate: {
+                checkLength: (value: any) => value.length >= 8,
+                matchPattern: (value: any) =>
+                  /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$*])/.test(value),
+              },
+            }
+          )}
           name={name}
           type={show ? "text" : "password"}
           className="w-full border-[1px] border-[#BFBEB9] rounded-[8px] px-[12px] py-[12px] md:px-[20px] md:py-[12px] outline-primary placeholder:text-[#C1C1C1] placeholder:text-[14px] placeholder:font-[400] text-[14px] relative bg-white"
@@ -69,7 +79,7 @@ export const Password = ({
           {show ? <GrHide size="20" /> : <GrView size="20" />}
         </span>
       </div>
-     
+
       {(error[name] as { type: string }) && error[name].type === "required" && (
         <p className="text-sm text-red-600 font-bold text-left">
           Password is required
@@ -114,14 +124,23 @@ export const PasswordLogin = ({
       <div className="relative w-full">
         <input
           type={show ? "text" : "password"}
-          {...register(name as keyof FormValues, {
-            required: true,
-            validate: {
-              checkLength: (value) => value.length >= 8,
-              matchPattern: (value) =>
-                /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$*])/.test(value),
-            },
-          })}
+          {...register(
+            name as
+              | "password"
+              | "confirmPassword"
+              | "email"
+              | "username"
+              | "gender"
+              | "accountType",
+            {
+              required: true,
+              validate: {
+                checkLength: (value) => value.length >= 8,
+                matchPattern: (value) =>
+                  /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$*])/.test(value),
+              },
+            }
+          )}
           id={For}
           className="mt-1 rounded bg-[#E6EEE6] placeholder:text-sm placeholder:font-regular font-regular text-slate-600 w-full relative"
           placeholder={placeholder}
@@ -164,7 +183,7 @@ export const Text = ({
   name,
   required,
   classname,
-}: inputFieldDataType & { register: UseFormRegister<FormInput> }) => {
+}: inputFieldDataType &  { register: UseFormRegister<FormInput> }) => {
   return (
     <div className="grid w-full max-w-full items-center">
       <Label
@@ -176,7 +195,16 @@ export const Text = ({
       <Input
         id={name}
         placeholder={placeholder}
-        {...register(name as keyof FormValues, { required: true })}
+        {...register(
+          name as
+            | "password"
+            | "confirmPassword"
+            | "email"
+            | "username"
+            | "gender"
+            | "accountType",
+          { required: true }
+        )}
         name={name}
         type={type || "text"}
         className="w-full border-[1px] border-[#BFBEB9] rounded-[8px] px-[12px] py-[12px] md:px-[20px] md:py-[12px] outline-primary placeholder:text-[#C1C1C1] placeholder:text-[14px] placeholder:font-[400] text-[14px] bg-white"
@@ -231,7 +259,7 @@ export const Checkbox = ({
     <div className="w-full">
       <input
         type="checkbox"
-        {...register(name as keyof FormValues, { required: true })}
+        {...register(name as "password" | "confirmPassword" | "email" | "username" | "gender" | "accountType", { required: true })}
         name={name}
         id={name}
         className="before:content[''] peer relative h-[16px] w-[16px] cursor-pointer appearance-none rounded-[3px] border-[1px] border-[#BFBEB9] transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-primary2 checked:bg-primary2 checked:before:bg-primary2 hover:before:opacity-10"
