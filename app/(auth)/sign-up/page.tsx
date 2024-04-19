@@ -167,10 +167,10 @@ const Page = () => {
   };
 
   return (
-    <div>
-      <div className="w-full  mx-auto h-full">
-        <div className="bg-white md:rounded-[32px] rounded-[24px] px-[4%] py-[10px] md:p-[10px] my-3 shadow-xl ">
-          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[10px] md:pb-[7px] items-center">
+    <div className="w-[100%]">
+      <div className="w-full mx-aut0 h-full ">
+        <div className="bg-white md:rounded-[32px] rounded-[24px] px-[4%] py-[25px] lg:p-[32px] my-3 shadow-xl w-full">
+          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[10px] md:pb-[7px] items-center w-full">
             <div className="flex justify-start">
               {page !== 0 ? (
                 <button
@@ -189,7 +189,7 @@ const Page = () => {
             </div>
             <div className="flex justify-center">
               <Image
-                className="w-[63px] md:w-[80px]"
+                className="w-[63px] md:w-[80px] hidden md:block"
                 width={63}
                 height={63}
                 src={Logo}

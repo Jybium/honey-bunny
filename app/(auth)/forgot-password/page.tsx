@@ -48,7 +48,7 @@ const Page = () => {
     navigate.back();
   };
   return (
-    <div className=" xl:grid grid-cols-2 flex items-center px-[4%] md:px-[20%] lg:px-[4%]  2xl:px-[6%] py-[50px] md:py-[30px] h-full">
+    <div className=" xl:grid grid-cols-2 flex items-center px-[7%] md:px-[20%] lg:px-[4%]  2xl:px-[6%] py-[50px] md:py-[30px] h-full">
       <div className="w-full md:w-[565px] mx-auto h-full">
         <div className="bg-white md:rounded-[32px] rounded-[24px]  p-[4%] md:p-[26px] shadow-xl h-full flex flex-col">
           <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[20px] items-center">
