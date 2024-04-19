@@ -60,9 +60,9 @@ const Landingpage = () => {
   }
 
   return (
-    <main className="h-screen w-full">
-      <section className="md:flex justify-center content-center w-full md:h-[82%] bg-background">
-        <section className="md:flex grid justify-between items-center md:h-[80%] m-auto w-[90%]">
+    <main className="md:h-screen h-screen w-full max-w-[1728px] max-h-[1117px]">
+      <section className="sm:grid lg:flex items-center content-center w-full lg:h-[88%] h-[88%] bg-background">
+        <section className="lg:flex justify-between items-center content-center lg:h-full h-[88%] m-auto w-[90%]">
           <div>
             <Image
               src={Logo}
@@ -80,7 +80,7 @@ const Landingpage = () => {
               </h1>
               <p className="text-lg mt-4 mb-16">{landingPage[text].text}</p>
             </div>
-            <div className="flex gap-6 pb-7 md:pb-0">
+            <div className="flex gap-6 pb- md:pb-0">
               <Button
                 asChild
                 className={`${
@@ -108,7 +108,7 @@ const Landingpage = () => {
           </section>
         </section>
       </section>
-      <div className="md:h-1/6 h-fit">
+      <div className="md:h-fit h-fit">
         <Footer />
       </div>
       <div

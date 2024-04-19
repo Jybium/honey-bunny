@@ -168,7 +168,7 @@ const Page = () => {
 
   return (
     <div>
-      <div className="w-full xl:w-[565px] mx-auto h-full">
+      <div className="w-full  mx-auto h-full">
         <div className="bg-white md:rounded-[32px] rounded-[24px] px-[4%] py-[10px] md:p-[10px] my-3 shadow-xl ">
           <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[10px] md:pb-[7px] items-center">
             <div className="flex justify-start">
@@ -205,11 +205,11 @@ const Page = () => {
             </div>
           </div>
           {page === 0 && (
-            <div>
-              <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] md:mt-[10px] mt-[30px] text-[#44464A] md:leading-[30px] text-center ">
+            <div className="md:px-5 lg:px-4">
+              <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] md:mt-[40px] mt-[30px] text-[#44464A] md:leading-[30px] text-center ">
                 Are you model or explorer?
               </h4>
-              <div className="mt-[30px] md:mt-[20px] grid grid-cols-2 gap-[16px] md:gap-[32px] xl:mx-[15px]">
+              <div className="mt-[40px] md:mt-[40px] grid grid-cols-2 gap-[16px] md:gap-[32px] xl:mx-[15px]">
                 <div
                   onClick={handleModelClick}
                   className="radio-container h-full w-full"
@@ -224,7 +224,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="model"
-                    className="custom-radio md:h-[235px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
+                    className="custom-radio md:h-[279px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
                   >
                     <div
                       className={`h-full border ${
@@ -233,10 +233,10 @@ const Page = () => {
                           : "border-text"
                       } rounded-[20px] md:rounded-[28px]`}
                     >
-                      <div className="py-[15px] flex flex-col items-center justify-between h-full">
+                      <div className="py-[28px] flex flex-col items-center justify-between h-full">
                         <div className="">
                           <Image
-                            className="md:w-[140px] w-[110px] md:h-[140px] h-[110px] rounded-full object-cover"
+                            className="md:w-[140px] w-[90px] md:h-[140px] h-[90px] rounded-full object-cover"
                             src={Model.src}
                             alt="model image"
                             height={140}
@@ -265,7 +265,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="explorer"
-                    className="custom-radio md:h-[235px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
+                    className="custom-radio md:h-[279px] h-[188px] w-full rounded-[20px] md:rounded-[28px]"
                   >
                     <div
                       className={`h-full border ${
@@ -274,10 +274,10 @@ const Page = () => {
                           : "border-text"
                       } rounded-[20px] md:rounded-[28px]`}
                     >
-                      <div className="py-[15px] flex flex-col items-center justify-between h-full">
+                      <div className="py-[28px] flex flex-col items-center justify-between h-full">
                         <div>
                           <Image
-                            className="md:w-[140px] w-[110px] md:h-[140px] h-[110px] rounded-full object-cover"
+                            className="md:w-[140px] w-[90px] md:h-[140px] h-[90px] rounded-full object-cover"
                             src={Explorer}
                             alt="explorer image"
                             height={140}
@@ -297,7 +297,7 @@ const Page = () => {
                   {page !== formTiles.length - 1 && (
                     <button
                       onClick={handleNext}
-                      className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[50px] md:mt-[20px] text-black text-[16px] md:text-[18px] font-[400] ${
+                      className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[50px] md:mt-[80px] text-black text-[16px] md:text-[18px] font-[400] ${
                         isNextDisabled1
                           ? "bg-[#ECECEC] cursor-not-allowed text-[#9E9E9E]"
                           : "bg-tertiary hover:bg-tertiaryHover"
@@ -309,7 +309,7 @@ const Page = () => {
                   )}
                 </div>
               )}
-              <div className="mt-[20px] mb-2 md:mt-[10px]  md:mb-[8px] flex justify-center gap-[12px]">
+              <div className="mt-[20px] mb-2 md:mt-[20px]  md:mb-[20px] flex justify-center gap-[12px]">
                 <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-white "></div>
                 <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-white "></div>
               </div>
@@ -317,13 +317,13 @@ const Page = () => {
           )}
 
           {page === 1 && (
-            <div className="bg-white">
-              <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] mt-[20px] md:mt-[10px] text-[#44464A] md:leading-[30px] text-center ">
+            <div className="bg-white md:px-5 lg:px-4">
+              <h4 className="text-[18px] md:text-[24px] font-[500] leading-[22px] mt-[20px] md:mt-[30px] text-[#44464A] md:leading-[30px] text-center ">
                 Sign up
               </h4>
 
               <form
-                className="mt-[20px] md:mt-[10px]"
+                className="mt-[20px] md:mt-[20px]"
                 onSubmit={handleSubmit(submit)}
               >
                 <div className="w-full">
@@ -336,7 +336,7 @@ const Page = () => {
                     error={errors}
                   />
                 </div>
-                <div className="mt-[16px] md:mt-[10px]">
+                <div className="mt-[16px] md:mt-[20px]">
                   <Password
                     register={register}
                     error={errors}
@@ -345,7 +345,7 @@ const Page = () => {
                     title="Password"
                   />
                 </div>
-                <div className="mt-[16px] md:mt-[10px]">
+                <div className="mt-[16px] md:mt-[20px]">
                   <Password
                     register={register}
                     error={errors}
@@ -404,7 +404,7 @@ const Page = () => {
                     {page !== formTiles.length - 1 && (
                       <button
                         onClick={handleNext}
-                        className={`w-full px-[20px] py-[10px] rounded-[32px] mt-[10px] xl:mt-[20px] text-black text-[16px] md:text-[18px] font-[400] ${
+                        className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[30px] xl:mt-[80px] text-black text-[16px] md:text-[18px] font-[400] ${
                           isNextDisabled2
                             ? "bg-[#ECECEC] cursor-not-allowed text-[#9E9E9E]"
                             : "bg-tertiary hover:bg-tertiaryHover"
@@ -416,7 +416,7 @@ const Page = () => {
                     )}
                   </div>
                 )}
-                <div className="mt-[10px] md:mb-[6px] flex justify-center gap-[12px]">
+                <div className="mt-[20px] md:mb-[20px] flex justify-center gap-[12px]">
                   <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-primary"></div>
                   <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-white"></div>
                 </div>
