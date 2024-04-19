@@ -61,33 +61,34 @@ const Landingpage = () => {
 
   return (
     <main className="md:h-screen h-screen w-full max-w-[1728px] max-h-[1117px]">
-      <section className="sm:grid lg:flex items-center content-center w-full lg:h-[88%] h-[88%] bg-background">
-        <section className="lg:flex justify-between items-center content-center lg:h-full h-[88%] m-auto w-[90%]">
-          <div>
+      <section className="sm:grid lg:flex items-center content-cente w-full lg:h-[88%] h-[88%] bg-background">
+        <section className="lg:flex grid justify-between items-center content-cente lg:h-full h-[88%] m-auto w-[90%] ">
+          <div className="hidden md:grid sm:grid  text-center mx-au content-center w-full lg:w-auto">
             <Image
               src={Logo}
               alt="logo"
               width={400}
               height={400}
               priority
-              className="block w-[65%] md:w-[400px] mx-auto md:mx-0 md:max-w-full"
+              className="block sm:w-[60%] md:w-[50%] lg:w-[400px] mx-auto"
             />
           </div>
-          <section className="md:w-[57%] w-full">
+
+          <section className="lg:w-[57%] w-full lg:h-[80%] h-full items-center justify-center grid mt-4 sm:mt-0">
             <div className="text-white">
               <h1 className="text-[32px] font-[500] leading-[40px] text-white md:text-[64px] md:leading-[81px]">
                 {landingPage[text].heading}
               </h1>
               <p className="text-lg mt-4 mb-16">{landingPage[text].text}</p>
             </div>
-            <div className="flex gap-6 pb- md:pb-0">
+            <div className="flex md:gap-x-6 gap-x-3">
               <Button
                 asChild
                 className={`${
                   text === 1
                     ? "bg-base2 text-white"
                     : "bg-white text-text border border-white"
-                } px-[48px] py-[14px] md:py-[20px] rounded-[40px] `}
+                } md:px-[48px] px-[40px] py-[14px] md:py-[20px] rounded-[40px] `}
               >
                 <p
                   className="cursor-pointer py-5"
@@ -98,7 +99,7 @@ const Landingpage = () => {
               </Button>
               <Button
                 asChild
-                className="px-[48px] py-[14px] md:py-[20px] rounded-[40px] border border-white text-white"
+                className="md:px-[48px] px-[40px] py-[14px] md:py-[20px] rounded-[40px] border border-white text-white"
               >
                 <Link href="/log-in" className="text-white py-5">
                   Log in
