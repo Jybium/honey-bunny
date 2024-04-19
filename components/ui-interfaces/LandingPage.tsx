@@ -18,17 +18,27 @@ const Landingpage = () => {
   const [showModal, setShowModal] = useState(false);
   const [text, setText] = useState<number>(0);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 5000);
-  }, []);
+ useEffect(() => {
+   // Check if the user has seen the splash screen before
+   const hasSeenSplash = localStorage.getItem("hasSeenSplash");
 
-  useEffect(() => {
-    setTimeout(() => {
-      setText(1);
-    }, 10000);
-  }, []);
+   if (hasSeenSplash === "true") {
+     // Skip splash screen
+     setLoading(false);
+   } else {
+     // Show splash screen and set it to false after 3 seconds
+     setTimeout(() => {
+       setLoading(false);
+       localStorage.setItem("hasSeenSplash", "true");
+     }, 3000);
+   }
+ }, []);
+
+ useEffect(() => {
+   setTimeout(() => {
+     setText(1);
+   }, 10000);
+ }, []);
 
   const handleSignUpClick = () => {
     setShowModal(true);
