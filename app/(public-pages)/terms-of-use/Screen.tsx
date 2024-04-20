@@ -56,10 +56,10 @@ const Screen = () => {
 
   return (
     <main className="md:h-screen w-full ">
-      <section className="px-[4%] md:px-[4%] lg:px-[4%]  2xl:px-[6%]  py-[50px] md:py-[20px] bg-base">
+      <section className="px-[4%] md:px-[4%] lg:px-[4%]  2xl:px-[6%]  pt-[50px] md:py-[20px] bg-base h-[86%}">
         <div className="md:pb-[0px] pb-[20px] bg-base">
           <Image
-            className="md:w-[86px] w-[196px] mx-auto md:mx-[0px]"
+            className="md:w-[86px] w-[150px] mx-auto md:mx-[0px]"
             width={63}
             height={80}
             src={Logo}
@@ -67,7 +67,7 @@ const Screen = () => {
           />
         </div>
      
-          <section className="lg:flex grid justify-between items-start content-center mx-auto w-[90%] lg:max-h-[04px] min-h-[704px] gap-[32px] lg:gap-0 lg:gap-x-8 bg-background">
+          <section className="lg:flex grid justify-between items-start content-center mx-auto w-[90%] lg:max-h-[704px] min-h-[704px] gap-[32px] lg:gap-0 lg:gap-x-8 bg-background">
             <div className="lg:w-[681px]">
               <div className="pb-[20px] md:pb-[40px] mb-[24px] md:mb-[30px] border-b-[1px] border-white">
                 <h4 className="text-[32px] md:text-[64px] md:lading-[81px] font-[500] text-white">
@@ -98,7 +98,7 @@ const Screen = () => {
               </div>
             </div>
 
-            <div className="bg-rgba-6ab5d2-16 px-[24px] py-[36px] rounded-[24px] h-full flex flex-col overflow-x-scroll lg:w-[767px] lg:h-[704px] w-full">
+            <div className="bg-rgba-6ab5d2-16 px-[24px] py-[25px] rounded-[24px] h-full flex flex-col overflow-x-scroll lg:w-[767px] lg:h-[704px] w-full">
               {terms.map((terms, index) => (
                 <div key={index}>
                   <div>
@@ -150,7 +150,7 @@ const Screen = () => {
                 </div>
               ))}
               <div className="mt-auto md:flex flex-row items-center  justify-between pt-[17px] border-t-[1px] border-line">
-                <div className="order-2 flex justify-center items-center gap-[24px]">
+                {/* <div className="order-2 flex justify-center items-center gap-[24px]">
                   <Button
                     size="sm"
                     onClick={handlePrevSlide}
@@ -175,7 +175,7 @@ const Screen = () => {
                       alt="arrow Right"
                     />
                   </Button>
-                </div>
+                </div> */}
                 <div className="order-1 mt-[20px] md:mt-[0px]">
                   <h4 className="text-white font-[400] text-[12px] text-center">
                     Last updated: November 2021
