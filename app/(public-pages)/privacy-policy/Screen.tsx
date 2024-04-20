@@ -55,11 +55,11 @@ const Screen = () => {
     activeSlideIndex !== policy[activeHeadingIndex].slides.length - 1;
 
   return (
-    <main className="md:h-screen w-full ">
-      <section className="px-[4%] md:px-[20%] lg:px-[4%]  2xl:px-[6%]  py-[20px] bg-base">
+    <main className="md:h-screen w-full">
+      <section className="px-[4%] md:px-[4%] lg:px-[4%]  2xl:px-[6%]  pt-[50px] md:py-[20px] bg-base h-fit">
         <div className="md:pb-[20px] pb-[20px] bg-base">
           <Image
-            className="md:w-[86px] w-[196px] mx-auto md:mx-[0px]"
+            className="md:w-[86px] w-[150px] mx-auto md:mx-[0px]"
             width={63}
             height={80}
             src={Logo}
@@ -97,7 +97,7 @@ const Screen = () => {
                 ))}
               </div>
             </div>
-            <div className="bg-rgba-6ab5d2-16 px-[24px] py-[36px] rounded-[24px] h-full flex flex-col">
+            <div className="bg-rgba-6ab5d2-16 px-[24px] py-[30px] rounded-[24px] h-full flex flex-col">
               {policy.map((policy, index) => (
                 <div key={index}>
                   <div>
@@ -149,7 +149,7 @@ const Screen = () => {
                 </div>
               ))}
               <div className="mt-auto md:flex flex-row items-center  justify-between pt-[17px] border-t-[1px] border-line">
-                <div className="order-2 flex justify-center items-center gap-[24px]">
+                {/* <div className="order-2 flex justify-center items-center gap-[24px]">
                   <Button
                     size="sm"
                     onClick={handlePrevSlide}
@@ -174,7 +174,7 @@ const Screen = () => {
                       alt="arrow Right"
                     />
                   </Button>
-                </div>
+                </div> */}
                 <div className="order-1 mt-[20px] md:mt-[0px]">
                   <h4 className="text-white font-[400] text-[12px] text-center">
                     Last updated: November 2021
@@ -185,7 +185,7 @@ const Screen = () => {
           </div>
         </section>
       </section>
-      <div className="md:h-1/6 h-fit">
+      <div className="md:h-fit h-fit">
         <Footer />
       </div>
     </main>
