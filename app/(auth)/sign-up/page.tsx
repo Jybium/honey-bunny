@@ -167,10 +167,10 @@ const Page = () => {
   };
 
   return (
-    <div>
-      <div className="w-full  mx-auto h-full">
-        <div className="bg-white md:rounded-[32px] rounded-[24px] px-[4%] py-[10px] md:p-[10px] my-3 shadow-xl ">
-          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[10px] md:pb-[7px] items-center">
+    <div className="w-[100%]">
+      <div className="w-full mx-auto h-full ">
+        <div className="bg-white md:rounded-[32px] rounded-[24px] px-[4%] py-[25px] lg:p-[32px] my-3 shadow-xl w-full">
+          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[10px] md:pb-[7px] items-center w-full">
             <div className="flex justify-start">
               {page !== 0 ? (
                 <button
@@ -189,7 +189,7 @@ const Page = () => {
             </div>
             <div className="flex justify-center">
               <Image
-                className="w-[63px] md:w-[80px]"
+                className="w-[63px] md:w-[80px] hidden md:block"
                 width={63}
                 height={63}
                 src={Logo}
@@ -231,16 +231,16 @@ const Page = () => {
                         formValues.accountType === "model"
                           ? "border-[0px]"
                           : "border-text"
-                      } rounded-[20px] md:rounded-[28px]`}
+                      } rounded-[20px] md:rounded-[28px] md:px-7`}
                     >
                       <div className="py-[28px] flex flex-col items-center justify-between h-full">
                         <div className="">
                           <Image
-                            className="md:w-[140px] w-[90px] md:h-[140px] h-[90px] rounded-full object-cover"
+                            className="md:w-[160px] w-[90px] md:h-[160px] h-[90px] rounded-full"
                             src={Model.src}
                             alt="model image"
-                            height={140}
-                            width={140}
+                            height={160}
+                            width={160}
                           />
                         </div>
                         <h4 className="custom-text  text-black text-[16px] font-[500] md:text-[24px] ">
@@ -272,16 +272,16 @@ const Page = () => {
                         formValues.accountType === "explorer"
                           ? "border-[0px]"
                           : "border-text"
-                      } rounded-[20px] md:rounded-[28px]`}
+                      } rounded-[20px] md:rounded-[28px] md:px-7`}
                     >
                       <div className="py-[28px] flex flex-col items-center justify-between h-full">
                         <div>
                           <Image
-                            className="md:w-[140px] w-[90px] md:h-[140px] h-[90px] rounded-full object-cover"
+                            className="md:w-[160px] w-[90px] md:h-[160px] h-[90px] rounded-full"
                             src={Explorer}
                             alt="explorer image"
-                            height={140}
-                            width={140}
+                            height={160}
+                            width={160}
                           />
                         </div>
                         <h4 className="custom-text  text-black text-[16px] font-[500] md:text-[24px] ">

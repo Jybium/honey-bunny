@@ -131,7 +131,7 @@ const Page = () => {
           </form>
           <div className="mt-auto">
             <button
-              className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[60px] md:mt-[80px] text-black text-[16px] md:text-[18px] font-[400] ${
+              className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[70px] md:mt-[80px] text-black text-[16px] md:text-[18px] font-[400] ${
                 isSubmitDisabled
                   ? "bg-[#ECECEC] cursor-not-allowed text-[#9E9E9E]"
                   : "bg-tertiary hover:bg-tertiaryHover"
@@ -142,7 +142,7 @@ const Page = () => {
               Confirm
             </button>
           </div>
-          <div className="mt-[20px]  md:mb-[20px] flex justify-center gap-[12px]">
+          <div className="mt-[20px]  md:mb-[20px] mb-[30px] flex justify-center gap-[12px]">
             <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-base"></div>
             <div className="w-[10px] h-[10px] border-[1px] border-base rounded-full bg-base"></div>
           </div>

@@ -20,10 +20,10 @@ const Page= () => {
   const isSubmitDisabled = password === "" || confirmPassword === "";
 
   return (
-    <div className=" xl:grid grid-cols-2 flex items-center px-[4%] md:px-[20%] lg:px-[4%]  2xl:px-[6%]  py-[50px] md:py-[20px] md:pt-[10px] h-full">
+    <div className=" xl:grid grid-cols-2 flex items-center px-[4%] lg:px-[4%] md:px-[32px]  2xl:px-[6%]  py-[50px] md:py-[50px] h-full">
       <div className="w-full md:w-[565px] mx-auto h-full">
         <div className="bg-white md:rounded-[32px] rounded-[24px]  p-[4%] md:p-[32px] md:pt-[20px] shadow-xl h-full flex flex-col">
-          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[25px] md:pb-[10px] items-center">
+          <div className="grid grid-cols-3 border-b-[1px] border-[#EFD378]  pb-[25px]  items-center">
             <div></div>
             <div className="flex justify-center">
               <Image
@@ -46,7 +46,7 @@ const Page= () => {
             Create new password
           </h4>
 
-          <form className="mt-[30px] md:mt-[30px]   ">
+          <form className="mt-[30px] md:mt-[30px]  grid md:gap-5 gap-4 ">
             <div>
               <h4 className="text-[#535353]  font-[500] text-[12px] mb-[8px] ">
                 New password
@@ -60,7 +60,7 @@ const Page= () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="mt-[16px] md:mt-[16px]">
+            <div className="">
               <h4 className="text-[#535353]  font-[500] text-[12px] mb-[8px] ">
                 Confirm new password
               </h4>
@@ -76,7 +76,7 @@ const Page= () => {
           </form>
           <div className="mt-auto">
             <button
-              className={`w-full px-[20px] py-[12px] rounded-[32px] mt-[20px] md:mt-[50px] text-black text-[16px] md:text-[18px] font-[400] ${
+              className={`w-full px-[20px] py-[12px] rounded-[32px] md:mb-20 mb-5 mt-[30px] md:mt-[80px] text-black text-[16px] md:text-[18px] font-[400] ${
                 isSubmitDisabled
                   ? "bg-[#ECECEC] cursor-not-allowed text-[#9E9E9E]"
                   : "bg-tertiary hover:bg-tertiaryHover"

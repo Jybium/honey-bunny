@@ -9,10 +9,12 @@ type modal = {
     bgColor: string;
     textColor: string;
     hoverBgColor: string;
+    border?: string;
   };
   button2Style: {
     bgColor: string;
     textColor: string;
     hoverBgColor: string;
+    border?: string;
   };
 };

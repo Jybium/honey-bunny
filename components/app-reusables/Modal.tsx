@@ -28,9 +28,11 @@ const Modal = ({
     onClose(false);
   };
 
+
+
   return (
     <div className="fixed top-0 left-0 w-full h-full ">
-      <div className="flex justify-center pt-[10px] pb-[20px] md:pb-[30px] md:pt-[30px]">
+      <div className="flex justify-center pt-[20px] pb-[10px] md:pb-[10px] md:pt-[40px]">
         <ChevronDown color="#EFD378" className="text-tertiary"  size={30}/>
       </div>
       <div className="modal-content bg-white w-[92%] md:w-[435px] rounded-[20px] mx-auto z-50 px-[24px] py-[10px] md:py-[32px]">
@@ -39,13 +41,13 @@ const Modal = ({
         </h2>
         <div className="flex gap-[16px] justify-center">
           <button
-            className={`px-[12px] py-[6px] rounded-[8px] text-[14px] font-[400] ${button1Style.hoverBgColor} ${button1Style.bgColor} ${button1Style.textColor}`}
+            className={`px-[12px] py-[6px] rounded-[8px] text-[14px] border font-[400] ${button1Style.hoverBgColor} ${button1Style.bgColor} ${button1Style.textColor} ${button1Style.border}`}
             onClick={handleYesClick}
           >
             {button1Text}
           </button>
           <button
-            className={`px-[12px] py-[6px] rounded-[8px] text-[14px] font-[400] ${button2Style.hoverBgColor} ${button2Style.bgColor} ${button2Style.textColor}`}
+            className={`px-[12px] py-[6px] rounded-[8px] text-[14px] font-[400] border ${button2Style.hoverBgColor} ${button2Style.bgColor} ${button2Style.textColor} ${button2Style.border}`}
             onClick={handleNoClick}
           >
             {button2Text}
